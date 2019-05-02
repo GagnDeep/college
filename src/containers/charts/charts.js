@@ -7,7 +7,7 @@ class charts extends Component {
     render() {
         return (
             <div style ={{textAlign:'center'}}>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="myChart" width="400" height="400" style = {{maxWidth:'500px', maxHeight:'500px', margin: '0 auto'}}></canvas>
                 <h5>Click on PIE to know subject</h5>
                 <h5>Also Click on subject names</h5>
             </div>
@@ -18,7 +18,7 @@ class charts extends Component {
         let resultState = this.props.result.resultState;
         console.log(chart.defaults.pie)
         var ctx = document.getElementById('myChart');
-        var myChart = new chart(ctx, {
+        new chart(ctx, {
             type: 'pie',
 
             data: {

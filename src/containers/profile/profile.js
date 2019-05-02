@@ -5,8 +5,7 @@ import { Link, Route, Switch} from 'react-router-dom';
 import Charts from './../charts/charts';
 
 const profile = props => {
-    let { image, name, rollno, result, resultState, percent } = props;
-
+    let { image, name, rollno, result, resultState, percent, sem} = props;
 
     let color = resultState === 'PASS' ? '#27ae60' : '#e74c3c'
     
@@ -30,7 +29,7 @@ const profile = props => {
                     <div className = {styles.resultState} style = {{backgroundColor: color}}>{resultState}</div>
                         <div>
                             <h3 style = {{color: color, textAlign: 'center', margin: "10px 0"}}>{percent.toFixed(2)}%</h3>
-                            <Link to = {`/results/${rollno}/charts`} style = {{textDecoration:'none'}}>
+                            <Link to = {`/results/${sem}/${rollno}/charts`} style = {{textDecoration:'none'}}>
                                 <div className = {styles.button}>
                                     CLICK HERE
                                 </div>
@@ -49,8 +48,8 @@ const profile = props => {
             </div>
             
             <Switch>
-                <Route path = '/results/:id/charts' exact render = {()=>(<Charts result= {result}/>)}/>
-                <Route path = '/results/:id/' render = {studentInfo}/>
+                <Route path = '/results/:sem/:rollno/charts' exact render = {()=>(<Charts result= {result}/>)}/>
+                <Route path = '/results/:sem/:rollno' render = {studentInfo}/>
             </Switch>
             
         </div>
