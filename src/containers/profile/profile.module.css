@@ -1,0 +1,72 @@
+.main{
+}
+.header{
+    width: 100%;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2c3e50;
+    box-shadow: 2px 2px 2px #ccc;
+}
+.studentInfo{
+    display:grid;
+    height: 55vh;
+    /* grid-row-gap: 10px; */
+    align-content: space-around;
+    align-content: space-evenly;
+}
+
+.studentName{
+    text-align: center;
+    text-shadow: 1px 1px 1px #ccc;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.button{
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #ccc;
+    color: black;
+    background: white;
+    font-weight: normal;
+    font-size: 16px;
+    border: 1px solid black;
+}
+
+/*.button:hover{*/
+/*    color:black;*/
+/*    border:1px solid rgb(231, 76, 60);*/
+/*    background-color: white;*/
+/*}*/
+a:hover{
+    background:white;
+}
+
+.item{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    grid-gap:20px;
+    padding:10px;
+    background: #eee;
+    border-radius: 10px;
+    font-weight: bold;
+    /*width: 80vw;*/
+    margin: 4px auto;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+.resultState{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: red;
+    text-align: center;
+    line-height: 100px;
+    color: white;
+    transform: rotateZ(-45deg);
+    font-size: 1.5rem;
+    box-shadow: 2px 2px 2px #ccc;
+}
