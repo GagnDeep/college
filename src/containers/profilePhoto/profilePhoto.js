@@ -5,7 +5,7 @@ const profilePhoto = props => {
     return (
         <div 
              style = {{background: `url(${props.image})`,backgroundPosition: '70% 30%',
-    'background-size': '110%'}}
+                backgroundSize: '110%'}}
              className = {styles.profile}/>
     );
 }
