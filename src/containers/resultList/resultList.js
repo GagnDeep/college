@@ -30,8 +30,8 @@ class resultList extends Component {
             let content = <h1>Loading</h1>
             if (this.state) {
 
-                content = this.state.data.map(e => {
-                    return <Item {...e} sem = {this.state.sem}/>
+                content = this.state.data.map((e,i) => {
+                    return <Item {...e} index = {i} sem = {this.state.sem}/>
                 })
 
 
@@ -44,6 +44,11 @@ class resultList extends Component {
                 <div>
                     <h1 style = {{textAlign:'center'}}>RESULT LIST</h1>
                     <table style={{margin:'0 auto', borderCollapse: 'collapse'}}>
+                        {this.state?<th>RANK</th>:null}
+                        {this.state?<th>NAME</th>:null}
+                        {this.state?<th>Total</th>:null}
+                        {this.state?<th>RollNo.</th>:null}
+                        
                         {content}
                     </table>
                 </div>

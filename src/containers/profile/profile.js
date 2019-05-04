@@ -22,7 +22,7 @@ const profile = props => {
                 
                 <div className = {styles.item}>
                     <div>SEMESTER</div>
-                    <div>3rd</div>
+                    <div>{sem}</div>
                 </div>
                 
                 <div className = {styles.item} style = {{background: 'none', boxShadow: 'none'}}>
