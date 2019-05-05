@@ -14,7 +14,7 @@ const item = props => {
             </td>
             <td className = {styles.name}>
                 <Link to = {`/results/${props.sem}/${rollno}`} style = {{color: color2}} 
-                      onClick = {()=>props.clickHandler(rollno)}>
+                      onClick = {()=>props.clickHandler?props.clickHandler(rollno):null}>
                         {props.name}
                 </Link>
                 

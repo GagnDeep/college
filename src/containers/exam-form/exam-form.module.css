@@ -1,0 +1,56 @@
+.container{
+    margin: 50px auto;
+    text-align: center;
+}
+.container h2{
+    margin-bottom: 8px;
+}
+.container h6{
+    margin-top: 8px;
+}
+
+
+.table{
+        /*border-collapse: collapse;*/
+    width: 100%;
+    max-width: 300px;
+    margin: 50px auto;
+    border-collapse:separate; 
+  border-spacing: 0 2rem;
+  margin-bottom: 10px;
+}
+
+td input {
+    margin:0 5px;
+    width: 90%;
+    border: none;
+    vertical-align: middle;
+    outline: none;
+}
+
+.inputContainer{
+    margin: 20px 0;
+}
+
+.button{
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #ccc;
+    color: white;
+    background: #34495e;
+    font-size: 16px;
+    border: 1px solid green;
+    width:90px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.inputName{
+    text-transform: uppercase;
+    border: none;
+    margin: 20px 0;
+    font-weight: bold;
+}
+.inputValue{
+    border-radius: 5px;
+}
