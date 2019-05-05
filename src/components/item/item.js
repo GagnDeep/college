@@ -13,7 +13,8 @@ const item = props => {
                 {props.index+1}
             </td>
             <td className = {styles.name}>
-                <Link to = {`/results/${props.sem}/${rollno}`} style = {{color: color2}}>
+                <Link to = {`/results/${props.sem}/${rollno}`} style = {{color: color2}} 
+                      onClick = {()=>props.clickHandler(rollno)}>
                         {props.name}
                 </Link>
                 

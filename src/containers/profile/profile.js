@@ -48,7 +48,9 @@ const profile = props => {
             </div>
             
             <Switch>
-                <Route path = '/results/:sem/:rollno/charts' exact render = {()=>(<Charts result= {result}/>)}/>
+                <Route path = '/results/:sem/:rollno/charts' exact render = {()=>(
+                            <Charts result= {result} 
+                            clickHandler = {props.clickHandler}/>)}/>
                 <Route path = '/results/:sem/:rollno' render = {studentInfo}/>
             </Switch>
             

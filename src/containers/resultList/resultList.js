@@ -29,7 +29,7 @@ class resultList extends Component {
             if (this.state) {
 
                 content = this.state.data.map((e,i) => {
-                    return <Item {...e} index = {i} sem = {this.state.sem}/>
+                    return <Item {...e} index = {i} sem = {this.state.sem} clickHandler = {this.props.clickHandler}/>
                 })
 
 

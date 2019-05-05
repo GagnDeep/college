@@ -12,7 +12,7 @@ class charts extends Component {
                 <h5>Click on PIE to know subject</h5>
                 <h5>Also Click on subject names</h5>
                 <br/>
-                <ResultList/>
+                <ResultList clickHandler = {this.props.clickHandler}/>
             </div>
         )
     }

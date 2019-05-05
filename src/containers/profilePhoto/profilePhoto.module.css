@@ -1,4 +1,5 @@
 .profile {
+    /*background: url(https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj3-KCvsIPiAhVLvo8KHUcTALwQjRx6BAgBEAU&url=https%3A%2F%2Fwww.onlinewebfonts.com%2Ficon%2F148071&psig=AOvVaw3qkxgqh4h1G3ADO-mxRew-&ust=1557110927021918);*/
     /*background-repeat: no-repeat;*/
     border-radius: 50%;
     /*background-position: 70% 30%;*/
@@ -10,4 +11,6 @@
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    background-position: 70% 30% !important;
+    background-size: 110% !important;
 }

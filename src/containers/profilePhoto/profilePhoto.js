@@ -4,8 +4,7 @@ import styles from './profilePhoto.module.css';
 const profilePhoto = props => {
     return (
         <div 
-             style = {{background: `url(${props.image})`,backgroundPosition: '70% 30%',
-                backgroundSize: '110%'}}
+             style = {{background: `url(${props.image})`}}
              className = {styles.profile}/>
     );
 }
