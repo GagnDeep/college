@@ -10,7 +10,7 @@ class studentResult extends Component {
     componentDidMount(){
         let rollno = this.props.match.params.rollno;
         let sem = this.props.match.params.sem;
-        let url = `https://college-2d3b0.firebaseio.com/${rollno}.json`
+        let url = `https://college-2d3b0.firebaseio.com/full/${rollno}.json`
         axios.get(url).then(e => {
             
             let data = e.data;
