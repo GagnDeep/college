@@ -5,9 +5,11 @@ import { Link, Route, Switch} from 'react-router-dom';
 import Charts from './../charts/charts';
 
 const profile = props => {
-    let { image, name, rollno, result, resultState, percent, sem} = props;
+    let { image, name, rollno, result, resultState, percent, sem, clicked, submitClicked} = props;
 
-    let color = resultState === 'PASS' ? '#27ae60' : '#e74c3c'
+    let color = resultState === 'PASS' ? '#27ae60' : '#e74c3c';
+    
+    let height = !clicked?35:15;
     
     function studentInfo(){
         return (
@@ -29,7 +31,9 @@ const profile = props => {
                     <div className = {styles.resultState} style = {{backgroundColor: color}}>{resultState}</div>
                         <div>
                             <h3 style = {{color: color, textAlign: 'center', margin: "10px 0"}}>{percent.toFixed(2)}%</h3>
-                            <Link to = {`/results/${sem}/${rollno}/charts`} style = {{textDecoration:'none'}}>
+                            <Link to = {`/results/${sem}/${rollno}/charts`} 
+                                onClick = {submitClicked}
+                                style = {{textDecoration:'none'}}>
                                 <div className = {styles.button}>
                                     CLICK HERE
                                 </div>
@@ -43,8 +47,8 @@ const profile = props => {
     
     return (
         <div className = {styles.main}>
-            <div className = {styles.header} style = {{backgroundColor: color}}>
-                <ProfilePhoto image = {image}/>
+            <div className = {styles.header} style = {{backgroundColor: color, height:height+"vh"}}>
+                <ProfilePhoto image = {image} height = {height}/>
             </div>
             
             <Switch>

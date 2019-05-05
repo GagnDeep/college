@@ -10,6 +10,11 @@ class studentResult extends Component {
     componentDidMount() {
         this.fetchData()
     }
+    
+    shouldComponentUpdate(){
+        if(this.state && this.state.clicked) this.setState({clicked:false});
+        return true
+    }
 
     fetchData = (rollno = this.props.match.params.rollno) => {
         let sem = this.props.match.params.sem;
@@ -29,11 +34,17 @@ class studentResult extends Component {
                 }, 0) / (i * 100)) * 100;
 
                 data["sem"] = sem;
+                
+                data['clicked'] = false
 
                 this.setState(data)
 
             })
             .catch(err => console.log(err))
+    }
+    
+    submitClicked = () => {
+        this.setState({clicked:true})
     }
 
     render() {
@@ -42,7 +53,7 @@ class studentResult extends Component {
         let content = <h1>Loading</h1>
 
         if (this.state)
-            content = <Profile {...this.state} clickHandler = {this.fetchData}/>
+            content = <Profile {...this.state} clickHandler = {this.fetchData} submitClicked = {this.submitClicked}/>
 
         return content;
     }
