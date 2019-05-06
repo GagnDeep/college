@@ -11,6 +11,13 @@
     margin: 10px;
 }
 
+.mobile{
+      display: block;
+    font-size: 1.5rem;
+    margin: 15px;
+    color: #57a816;
+}
+
 .checkmark {
   width: 56px;
   height: 56px;

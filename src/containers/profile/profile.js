@@ -1,17 +1,17 @@
 import React from 'react';
 import styles from './profile.module.css';
 import ProfilePhoto from './../profilePhoto/profilePhoto';
-import { Link, Route, Switch} from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Charts from './../charts/charts';
 
 const profile = props => {
-    let { image, name, rollno, result, resultState, percent, sem, clicked, submitClicked, course} = props;
+    let { image, name, rollno, result, resultState, percent, sem, clicked, submitClicked, course } = props;
 
     let color = resultState === 'PASS' ? '#27ae60' : '#e74c3c';
-    
-    let height = !clicked?35:15;
-    
-    function studentInfo(){
+
+    let height = !clicked ? 35 : 15;
+
+    function studentInfo() {
         return (
             <div className = {styles.studentInfo}>
                 <h2 className = {styles.studentName}>{name}</h2>
@@ -31,7 +31,7 @@ const profile = props => {
                     <div className = {styles.resultState} style = {{backgroundColor: color}}>{resultState}</div>
                         <div>
                             <h3 style = {{color: color, textAlign: 'center', margin: "10px 0"}}>{percent.toFixed(2)}%</h3>
-                            <Link to = {`/results/${sem}/${rollno}/charts/${course}`} 
+                            <Link to = {`/${course}/results/${sem}/${rollno}/charts/`} 
                                 onClick = {submitClicked}
                                 style = {{textDecoration:'none'}}>
                                 <div className = {styles.button}>
@@ -41,10 +41,10 @@ const profile = props => {
                         </div>
                     </div>
                 </div>
-                )
+        )
     }
-    
-    
+
+
     return (
         <div className = {styles.main}>
             <div className = {styles.header} style = {{backgroundColor: color, height:height+"vh"}}>
@@ -52,16 +52,19 @@ const profile = props => {
             </div>
             
             <Switch>
-                <Route path = '/results/:sem/:rollno/charts/:course' exact render = {()=>(
+                <Route path = '/:course/results/:sem/:rollno/charts/' exact render = {()=>(
                             <Charts result= {result} 
                             clickHandler = {props.clickHandler}/>)}/>
-                <Route path = '/results/:sem/:rollno/:course' render = {studentInfo}/>
+                <Route path = '/:course/results/:sem/:rollno/' render = {studentInfo}/>
             </Switch>
             
         </div>
 
     )
-    
-    
+
+
+
 }
+
+
 export default profile;

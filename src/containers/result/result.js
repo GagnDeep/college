@@ -8,9 +8,14 @@ import ExamForm from './../exam-form/exam-form'
 class result extends Component{
     render(){
         return (<Switch>
-            <Route path = '/exam-form/:course' component = {ExamForm} />
-            <Route path = '/results/:sem/:rollno/:course' component = {StudentResult} />
-            <Route path = '/results/:sem/:course' component = {ResultList}/>
+            <Route path = '/:course/exam-form/' component = {ExamForm} />
+            <Route path = '/:course/results/:sem/:rollno/' component = {StudentResult} />
+            <Route path = '/:course/results/:sem/' component = {ResultList}/>
+            <Route render = {() => {
+                return (
+                    <h1>404! NOT FOUND</h1>
+                )
+            }}/>
         </Switch>)
     }
 }

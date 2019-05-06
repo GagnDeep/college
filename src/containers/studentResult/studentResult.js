@@ -8,6 +8,7 @@ class studentResult extends Component {
 
 
     componentDidMount() {
+       
         this.fetchData()
     }
     

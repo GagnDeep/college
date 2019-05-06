@@ -11,7 +11,7 @@ const submitted = props => {
             </svg>
             <h2>Done!</h2>
             
-            <h4>SEND THIS VERIFICATION CODE THROUGH WHATSAPP TO </h4>
+            <h4>SEND THIS VERIFICATION CODE THROUGH WHATSAPP TO <span className = {styles.mobile}>+914045969113</span></h4>
             <div className = {styles.verificationCode}>
                 {props.id}
             </div>
