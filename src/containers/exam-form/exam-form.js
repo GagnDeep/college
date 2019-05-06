@@ -74,7 +74,8 @@ class form extends Component {
                 rollno: this.state.input.rollno.value,
             }
         this.setState({showProcessing: true})
-        axios.post('https://college-2d3b0.firebaseio.com/form.json', obj)
+        let course = this.props.match.params.course
+        axios.post(`https://college-2d3b0.firebaseio.com/${course}/form.json`, obj)
         .then(e => {
             this.setState({processing: true, obj: {...obj, id: e.data.name}})
         })

@@ -17,8 +17,9 @@ class studentResult extends Component {
     }
 
     fetchData = (rollno = this.props.match.params.rollno) => {
+        let course = this.props.match.params.course
         let sem = this.props.match.params.sem;
-        let url = `https://college-2d3b0.firebaseio.com/full/${rollno}.json`
+        let url = `https://college-2d3b0.firebaseio.com/${course}/full/${rollno}.json`
         axios.get(url).then(e => {
                 // debugger
                 let data = e.data;
@@ -53,7 +54,7 @@ class studentResult extends Component {
         let content = <h1>Loading</h1>
 
         if (this.state)
-            content = <Profile {...this.state} clickHandler = {this.fetchData} submitClicked = {this.submitClicked}/>
+            content = <Profile {...this.state} clickHandler = {this.fetchData} submitClicked = {this.submitClicked} course = {this.props.match.params.course}/>
 
         return content;
     }

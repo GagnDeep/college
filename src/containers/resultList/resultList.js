@@ -7,7 +7,8 @@ import Item from './../../components/item/item'
 class resultList extends Component {
 
     componentDidMount() {
-        axios.get('https://college-2d3b0.firebaseio.com/partial.json')
+        let course = this.props.match.params.course
+        axios.get(`https://college-2d3b0.firebaseio.com/${course}/partial.json`)
             .then(res => {
                 let data = res.data, sem = this.props.match.params.sem;
 
@@ -29,7 +30,7 @@ class resultList extends Component {
             if (this.state) {
 
                 content = this.state.data.map((e,i) => {
-                    return <Item {...e} index = {i} sem = {this.state.sem} clickHandler = {this.props.clickHandler}/>
+                    return <Item {...e} index = {i} sem = {this.state.sem} clickHandler = {this.props.clickHandler} course = {this.props.match.params.course}/>
                 })
 
 

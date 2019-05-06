@@ -1,29 +1,39 @@
 let fs = require('fs');
 
-let result_sem1 = require('./results-sem1'),
-    result_sem2 = require('./results-sem2'),
-    studentInfo = require('./student-info');
+let result_sem1_bca = require('./results-sem1'),
+    result_sem2_bca = require('./results-sem2'),
+    studentInfo_bca = require('./student-info'),
+    result_sem2_bcom = require('./results-sem2-bcom'),
+    studentInfo_bcom = require('./data-bcomMohindra');
 
 
 let data = {
-        full: {},
-        partial: {}
+        bca: {
+            full: {},
+            partial: {}
+        },
+        bcom: {
+            full: {},
+            partial: {}
+        }
     },
     result1 = {},
-    result2 = {};
+    result2 = {},
+    result2_bcom = {};
 
-result_sem1.forEach(e => result1[e.RollNo.replace(/\s/g, '')] = e)
-result_sem2.forEach(e => result2[e.RollNo.replace(/\s/g, '')] = e)
+result_sem1_bca.forEach(e => result1[e.RollNo.replace(/\s/g, '')] = e)
+result_sem2_bca.forEach(e => result2[e.RollNo.replace(/\s/g, '')] = e)
+result_sem2_bcom.forEach(e => result2_bcom[e.RollNo.replace(/\s/g, '')] = e)
 
 
 let execptions = [
     'Drug Abuse:Problem Mgt.& Prevention (Qualified)'
 ]
 
-studentInfo.forEach(el => {
+studentInfo_bca.forEach(el => {
     if (el && el.rollno) {
         let rollno = el.rollno.replace(/\s/g, '')
-        data.full[rollno] = { ...el,
+        data.bca.full[rollno] = { ...el,
             result: {
                 sem1: {
                     resultData: result1[rollno].result,
@@ -37,7 +47,7 @@ studentInfo.forEach(el => {
                 }
             }
         }
-        data.partial[rollno] = {
+        data.bca.partial[rollno] = {
             name: el.name,
             rollno: rollno,
             result: {
@@ -51,9 +61,37 @@ studentInfo.forEach(el => {
                 }
             }
         }
-        console.log(data.partial)
+        console.log(data.bca.partial)
     }
 })
+
+
+studentInfo_bcom.forEach(el => {
+    if (el && el.rollno) {
+        let rollno = el.rollno.replace(/\s/g, '')
+        data.bcom.full[rollno] = { ...el,
+            result: {
+                sem2: {
+                    resultData: result2_bcom[rollno].result,
+                    resultState: result2_bcom[rollno].pass,
+                    total: getTotal(result2_bcom[rollno].result)
+                }
+            }
+        }
+        data.bcom.partial[rollno] = {
+            name: el.name,
+            rollno: rollno,
+            result: {
+                sem2: {
+                    resultState: result2_bcom[rollno].pass,
+                    total: getTotal(result2_bcom[rollno].result)
+                }
+            }
+        }
+        console.log(data.bcom.partial)
+    }
+})
+
 
 function getTotal(arr) {
     return arr.reduce((a, c) => {
@@ -74,8 +112,8 @@ function getTotal(arr) {
 // fs.writeFile('./studentDataForES6.js', str2, function(err){
 //       if(err) throw err;
 // })
-fs.writeFile('./studentDataInJson.json', JSON.stringify(data), function(err){
-      if(err) throw err;
+fs.writeFile('./studentDataInJson.json', JSON.stringify(data), function(err) {
+    if (err) throw err;
 })
 
 // console.log(data['10013'].image)

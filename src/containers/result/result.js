@@ -8,9 +8,9 @@ import ExamForm from './../exam-form/exam-form'
 class result extends Component{
     render(){
         return (<Switch>
-            <Route path = '/exam-form' component = {ExamForm} />
-            <Route path = '/results/:sem/:rollno/' component = {StudentResult} />
-            <Route path = '/results/:sem/' component = {ResultList}/>
+            <Route path = '/exam-form/:course' component = {ExamForm} />
+            <Route path = '/results/:sem/:rollno/:course' component = {StudentResult} />
+            <Route path = '/results/:sem/:course' component = {ResultList}/>
         </Switch>)
     }
 }
