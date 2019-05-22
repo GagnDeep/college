@@ -27,6 +27,11 @@ class form extends Component {
                 placeholder: "Enter Your email",
                 value:""
             },
+            password: {
+                type: "password",
+                placeholder: "choose a password",
+                value:""
+            },
         },
         processing: false,
         showProcessing: false,

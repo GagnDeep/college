@@ -13,10 +13,10 @@
 .table{
         /*border-collapse: collapse;*/
     width: 100%;
-    max-width: 300px;
+    max-width: 330px;
     margin: 50px auto;
     border-collapse:separate; 
-  border-spacing: 0 2rem;
+  border-spacing: 5px 2rem;
   margin-bottom: 10px;
 }
 

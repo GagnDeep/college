@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const item = props => {
     let color = props.resultState?'white' : 'rgba(231, 76, 60, 0.3)',
     color2 = props.resultState?'#27ae60':'red',
-    color3 = props.resultState?'#black':'red';
+    color3 = props.resultState?'black':'red';
     const {rollno} = props;
     return (
         <tr className = {styles.mainDiv} style = {{background: color}}>

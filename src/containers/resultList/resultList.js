@@ -21,17 +21,29 @@ class resultList extends Component {
                     }
                 })
 
-                resultArr.sort((a, b) => b.total - a.total)
-                this.setState({ data: resultArr, sem: sem })
+                resultArr.sort((a, b) => b.total - a.total);
+                resultArr = resultArr.map((e,i) => {
+                    return {...e, rank: i}
+                })
+                this.setState({ data: resultArr, sem: sem, searchString: ""})
             })
     }
     render() {
             let content = <h1>Loading</h1>
+            let data = []
             if (this.state) {
-
-                content = this.state.data.map((e,i) => {
-                    return <Item {...e} index = {i} sem = {this.state.sem} clickHandler = {this.props.clickHandler} course = {this.props.match.params.course}/>
+                data = this.state.data
+                
+                if(this.state.searchString !== ""){
+                    data = data.filter(e =>e.rollno.includes(this.state.searchString)||e.name.includes(this.state.searchString) )
+                    
+                }
+                if(data.length)
+                content = data.map((e,i) => {
+                    return <Item {...e} index = {e.rank} sem = {this.state.sem} clickHandler = {this.props.clickHandler} course = {this.props.match.params.course}/>
                 })
+                else
+                content = <p>Result Not Found</p>
 
 
             }
@@ -40,18 +52,22 @@ class resultList extends Component {
             // content = <Profile {...this.state}/>
 
             return (
-                <div>
+                <div style = {{marginBottom: "200px"}}>
                     <h1 style = {{textAlign:'center'}}>RESULT LIST</h1>
+                    <input type="text" placeholder = "Search by name or roll no" onChange = {this.inputChangedHandler}/>
                     <table style={{margin:'0 auto', borderCollapse: 'collapse'}}>
-                        {this.state?<th>RANK</th>:null}
-                        {this.state?<th>NAME</th>:null}
-                        {this.state?<th>Total</th>:null}
-                        {this.state?<th>RollNo.</th>:null}
+                        {this.state&&data.length?<th>RANK</th>:null}
+                        {this.state&&data.length?<th>NAME</th>:null}
+                        {this.state&&data.length?<th>Total</th>:null}
+                        {this.state&&data.length?<th>RollNo.</th>:null}
                         
                         {content}
                     </table>
                 </div>
             );
+    }
+    inputChangedHandler = (e) => {
+        this.setState({searchString: e.target.value.toUpperCase()})
     }
 }
 
