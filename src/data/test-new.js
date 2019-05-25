@@ -1,10 +1,10 @@
 let fs = require('fs');
 
 let results = {
-    sem3: require('./dataArrBcom-10001_10200'),
+    sem3: require('./dataArr_bcom_bikram'),
 
 }
-let studentInfo = require('./data-10001_10200');
+let studentInfo = require('./data_bcom_bikram');
 
 let execptions = [
     'Drug Abuse:Problem Mgt.& Prevention (Qualified)'
@@ -58,9 +58,9 @@ studentInfo.forEach(el => {
 
 function getTotal(arr) {
     return arr.reduce((a, c) => {
-        c = execptions.indexOf(c.subject) === -1 ? (c.internal ? c.internal : 0) +
-            (c.external ? c.external : 0) : 0
-        return a + c
+        // c = execptions.indexOf(c.subject) === -1 ? (c.internal ? c.internal : 0) +
+        //     (c.external ? c.external : 0) : 0
+        return a + (c.total?c.total:0)
     }, 0)
 }
 

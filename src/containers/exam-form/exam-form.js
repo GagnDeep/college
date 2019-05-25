@@ -77,6 +77,7 @@ class form extends Component {
                 name: this.state.input.name.value,
                 email: this.state.input.email.value,
                 rollno: this.state.input.rollno.value,
+                password: this.state.input.password.value,
             }
         this.setState({showProcessing: true})
         let course = this.props.match.params.course

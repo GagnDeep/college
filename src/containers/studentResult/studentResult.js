@@ -29,9 +29,9 @@ class studentResult extends Component {
                 data["result"] = data.result[sem]
                 data["resultState"] = data.result.resultState ? "PASS" : "FAIL";
 
-                let i = 1;
+                let i = 0;
                 data["percent"] = (data.result.resultData.reduce((a, b) => {
-                    if (b.total) i++;
+                     i++;
                     return a + (b.total ? b.total : 0);
                 }, 0) / (i * 100)) * 100;
 
