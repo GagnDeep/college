@@ -54,7 +54,8 @@ const profile = props => {
             <Switch>
                 <Route path = '/:course/results/:sem/:rollno/charts/' exact render = {()=>(
                             <Charts result= {result} 
-                            clickHandler = {props.clickHandler}/>)}/>
+                            clickHandler = {props.clickHandler}
+                            sem = {sem}/>)}/>
                 <Route path = '/:course/results/:sem/:rollno/' render = {studentInfo}/>
             </Switch>
             

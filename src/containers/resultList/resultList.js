@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import Item from './../../components/item/item'
+import List from './../../components/resultList/resultList'
+
 
 
 class resultList extends Component {
@@ -25,45 +26,14 @@ class resultList extends Component {
                 resultArr = resultArr.map((e,i) => {
                     return {...e, rank: i}
                 })
-                this.setState({ data: resultArr, sem: sem, searchString: ""})
+                this.setState({ resultData: resultArr, sem: sem})
             })
     }
     render() {
-            let content = <h1>Loading</h1>
-            let data = []
-            if (this.state) {
-                data = this.state.data
-                
-                if(this.state.searchString !== ""){
-                    data = data.filter(e =>e.rollno.includes(this.state.searchString)||e.name.includes(this.state.searchString) )
-                    
-                }
-                if(data.length)
-                content = data.map((e,i) => {
-                    return <Item {...e} index = {e.rank} sem = {this.state.sem} clickHandler = {this.props.clickHandler} course = {this.props.match.params.course}/>
-                })
-                else
-                content = <p>Result Not Found</p>
-
-
-            }
-
-            // if (this.state)
-            // content = <Profile {...this.state}/>
-
             return (
-                <div style = {{marginBottom: "200px"}}>
-                    <h1 style = {{textAlign:'center'}}>RESULT LIST</h1>
-                    <input type="text" placeholder = "Search by name or roll no" onChange = {this.inputChangedHandler}/>
-                    <table style={{margin:'0 auto', borderCollapse: 'collapse'}}>
-                        {this.state&&data.length?<th>RANK</th>:null}
-                        {this.state&&data.length?<th>NAME</th>:null}
-                        {this.state&&data.length?<th>Total</th>:null}
-                        {this.state&&data.length?<th>RollNo.</th>:null}
-                        
-                        {content}
-                    </table>
-                </div>
+                <List show = {Boolean(this.state)}
+                      clickHandler = {this.props.clickHandler}
+                      {...this.state}>RESULT LIST</List>
             );
     }
     inputChangedHandler = (e) => {
