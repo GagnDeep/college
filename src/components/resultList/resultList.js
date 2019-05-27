@@ -43,6 +43,7 @@ class List extends Component{
                         
                         {content}
                     </table>
+                    <p>This website is a test version. If there is any confusion in displayed result, trust the result on punjabi universty website</p>
                 </div>
         );
     }

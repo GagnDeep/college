@@ -16,9 +16,9 @@ class charts extends Component {
             <div style ={{textAlign:'center'}}>
                 <canvas id="myChart" width="400" height="400" style = {{maxWidth:'500px', maxHeight:'500px', margin: '0 auto'}}></canvas>
                 
-                <ResultTable data = {this.props.result.resultData} resultState = {this.props.result.resultState}/>
-                <h4 style = {{background:'rgba(44, 62, 80, 0.9)', color: 'white', padding: '15px 0'}}>Want a copy of your exam sheets <Link to={`/${this.props.match.params.course}/exam-form/`} style = {{color:'#f1c40f'}}>Click Here</Link></h4>
-                <h4 style = {{background:'rgba(44, 62, 80, 0.9)', color: 'white', padding: '15px 0'}}>More data about failed students <Link to={`/${this.props.match.params.course}/failed/${this.props.sem}`} style = {{color:'#f1c40f'}}>Click Here</Link></h4>
+                <ResultTable data = {this.props.result.resultData} resultState = {this.props.result.resultState} total = {this.props.result.total}/>
+                <h4 style = {{background:'rgb(211, 84, 0)', color: 'white', padding: '15px 0'}}>More data about failed students <Link to={`/${this.props.match.params.course}/failed/${this.props.sem}`} style = {{color:'#f1c40f'}}>Click Here</Link></h4>
+                <h4 style = {{background:'rgba(44, 62, 80, 0.9)', color: 'white', padding: '15px 0'}}>To get a copy of your answer sheets <Link to={`/${this.props.match.params.course}/exam-form/`} style = {{color:'#f1c40f'}}>Click Here</Link></h4>
                 <br/>
                 {this.state.showResultList?<ResultList clickHandler = {this.props.clickHandler}/>:null}
             </div>

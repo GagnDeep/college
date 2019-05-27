@@ -55,7 +55,13 @@ class Failed extends Component {
     }
     
     clickHandler = subject => {
+        
         this.setState({selectedSubject: subject})
+    }
+    
+    getSelectedSubject = () => {
+        if(this.state.failedData[this.state.selectedSubject]) return this.state.selectedSubject
+        return Object.keys(this.state.failedData).reduce((a,c) => c.includes(this.state.selectedSubject)?a+c:a, "")
     }
 
     render() {
@@ -65,7 +71,7 @@ class Failed extends Component {
 
         if (this.state.selectedSubject) {
             content2 = <List show = {Boolean(this.state.selectedSubject)}
-                      resultData = {this.state.failedData[this.state.selectedSubject]} 
+                      resultData = {this.state.failedData[this.getSelectedSubject()]} 
                       sem = {this.props.match.params.sem}/>
         }
 

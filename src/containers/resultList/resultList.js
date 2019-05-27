@@ -33,7 +33,7 @@ class resultList extends Component {
             return (
                 <List show = {Boolean(this.state)}
                       clickHandler = {this.props.clickHandler}
-                      {...this.state}>RESULT LIST</List>
+                      {...this.state}>RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p></List>
             );
     }
     inputChangedHandler = (e) => {

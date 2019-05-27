@@ -5,12 +5,6 @@ let execptions = ['Drug Abuse:Problem Mgt.& Prevention (Qualified)']
 
 const resultTable = props => {
     let color = props.resultState? '#27ae60' : '#e74c3c';
-    let allTotal = props.data.reduce((a,c) => {
-        let total = getTotal(c);
-        if(total === "--") return a+0
-        else if(execptions.includes(c.subject)) return a+0
-        return a+total 
-    },0)
     
     let tableRows = props.data.map(e => {
         let total = getTotal(e);
@@ -43,7 +37,7 @@ const resultTable = props => {
             
             <tr style = {{background: color, color: "white"}}>
                 <td>TOTAL</td>
-                <td>{allTotal}</td>
+                <td>{props.total}</td>
             </tr>
         </table>
     );
