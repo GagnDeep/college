@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import List from './../../components/resultList/resultList'
+import {connect} from 'react-redux';
+
+import List from './../../components/resultList/resultList';
+import * as actionTypes from './../../store/actionTypes'
 
 
 
@@ -26,7 +29,7 @@ class resultList extends Component {
                 resultArr = resultArr.map((e,i) => {
                     return {...e, rank: i}
                 })
-                this.setState({ resultData: resultArr, sem: sem})
+                this.props.setResultList({ resultData: resultArr, sem: sem})
             })
     }
     render() {
@@ -41,4 +44,17 @@ class resultList extends Component {
     }
 }
 
-export default withRouter(resultList);
+const mapStateToProps = (state) => {
+    return {
+        resultData: state.resultData,
+        sem: state.sem
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setResultList: (payload) => dispatch({action: actionTypes.SET_RESULTLIST, ...payload})
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(resultList));
