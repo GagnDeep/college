@@ -34,9 +34,9 @@ class resultList extends Component {
     }
     render() {
             return (
-                <List show = {Boolean(this.state)}
+                <List show = {Boolean(this.props.showList)}
                       clickHandler = {this.props.clickHandler}
-                      {...this.state}>RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p></List>
+                      {...this.props}>RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p></List>
             );
     }
     inputChangedHandler = (e) => {
@@ -47,13 +47,14 @@ class resultList extends Component {
 const mapStateToProps = (state) => {
     return {
         resultData: state.resultData,
-        sem: state.sem
+        sem: state.sem,
+        showList: state.showList
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setResultList: (payload) => dispatch({action: actionTypes.SET_RESULTLIST, ...payload})
+        setResultList: (payload) => dispatch({type: actionTypes.SET_RESULTLIST, ...payload})
     }
 }
 
