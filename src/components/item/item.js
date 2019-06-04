@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './item.module.css';
 import {Link} from 'react-router-dom';
+// import {connect} from './redux-react'
 
 const item = props => {
     let color = props.resultState?'white' : 'rgba(231, 76, 60, 0.3)',

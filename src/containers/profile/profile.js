@@ -1,15 +1,20 @@
 import React from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux'
+
 import styles from './profile.module.css';
 import ProfilePhoto from './../profilePhoto/profilePhoto';
-import { Link, Route, Switch } from 'react-router-dom';
 import Charts from './../charts/charts';
 
 const profile = props => {
-    let { image, name, rollno, result, resultState, percent, sem, clicked, submitClicked, course } = props;
-
+    let { image, name, rollno, result, resultState, percent, sem, course } = props.student;
+    let {clicked, submitClicked} = props;
+    
     let color = resultState === 'PASS' ? '#27ae60' : '#e74c3c';
 
     let height = !clicked ? 35 : 15;
+    
+    // debugger
 
     function studentInfo() {
         return (
@@ -52,10 +57,7 @@ const profile = props => {
             </div>
             
             <Switch>
-                <Route path = '/:course/results/:sem/:rollno/charts/' exact render = {()=>(
-                            <Charts result= {result} 
-                            clickHandler = {props.clickHandler}
-                            sem = {sem}/>)}/>
+                <Route path = '/:course/results/:sem/:rollno/charts/' exact component = {Charts}/>
                 <Route path = '/:course/results/:sem/:rollno/' render = {studentInfo}/>
             </Switch>
             
@@ -67,5 +69,16 @@ const profile = props => {
 
 }
 
+const mapStateToProps = (state) => {
+    return {
+        student: state.student.profile
+    }
+}
 
-export default profile;
+// const mapDispatchToProps = (dispatch, props) => {
+//     return {
+//         submitClicked: props.submitClicked,
+//     }
+// }
+
+export default connect(mapStateToProps)(profile);

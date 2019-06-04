@@ -1,2 +1,4 @@
 export const SET_RESULTLIST = "SET_RESULTLIST";
 export const SET_FAILEDLIST = "SET_FAILEDLIST";
+
+export const SET_STUDENT = "SET_STUDENT";

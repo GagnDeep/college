@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+
 import Profile from './../../containers/profile/profile';
+import * as actions from './../../store/actions/index';
 
 
 class studentResult extends Component {
 
+    state = {
+        clicked: false
+    }
 
     componentDidMount() {
 
         this.fetchData()
     }
 
-    shouldComponentUpdate() {
+    shouldComponentUpdate(nextProps) {
+        
+        if(nextProps.match.params.rollno !== this.props.match.params.rollno) 
+            this.fetchData(nextProps.match.params.rollno)
+            
         if (this.state && this.state.clicked) this.setState({ clicked: false });
         return true
     }
@@ -20,33 +30,8 @@ class studentResult extends Component {
     fetchData = (rollno = this.props.match.params.rollno) => {
         let course = this.props.match.params.course
         let sem = this.props.match.params.sem;
-        let url = `https://college-2d3b0.firebaseio.com/${course}/full/${rollno}.json`
-        axios.get(url).then(e => {
-                // debugger
-                let data = e.data;
-
-
-                data["result"] = data.result[sem]
-                data["resultState"] = data.result.resultState ? "PASS" : "FAIL";
-
-                let i = 0;
-                data["percent"] = (data.result.resultData.reduce((a, c) => {
-                    // c = execptions.indexOf(c.subject) === -1 ? (c.internal ? c.internal : 0) +
-                    //     (c.external ? c.external : 0) : 0
-                    if(typeof c.total !== "string") i++
-                    let total = a + (c.total ? (typeof c.total === "string" ? 0 : c.total) : ((c.internal ? c.internal : 0) + (c.external ? c.external : 0)))
-                    // debugger
-                    return total
-                }, 0) / (i * 100)) * 100;
-
-                data["sem"] = sem;
-
-                data['clicked'] = false
-
-                this.setState(data)
-
-            })
-            .catch(err => console.log(err))
+        // debugger
+        this.props.get_student(sem, course, rollno)
     }
 
     submitClicked = () => {
@@ -58,11 +43,23 @@ class studentResult extends Component {
 
         let content = <h1>Loading</h1>
 
-        if (this.state)
-            content = <Profile {...this.state} clickHandler = {this.fetchData} submitClicked = {this.submitClicked} course = {this.props.match.params.course}/>
+        if (this.props.student)
+            content = <Profile clicked = {this.state.clicked} submitClicked = {this.submitClicked}/>
 
         return content;
     }
 }
 
-export default withRouter(studentResult);
+const mapStateToProps = (state) => {
+    return {
+        student: state.student.profile
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        get_student: (sem, course, rollno) => dispatch(actions.get_student(sem, course, rollno))
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(studentResult));
