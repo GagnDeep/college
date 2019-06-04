@@ -8,16 +8,18 @@ import * as actions from './../../store/actions/index'
 
 
 class resultList extends Component {
-    
+
     componentDidMount() {
-        let course = this.props.match.params.course
-        let sem = this.props.match.params.sem;
-        
-        this.props.get_resultList(sem, course)
+        if (this.props.resultData.length === 0) {
+            let course = this.props.match.params.course
+            let sem = this.props.match.params.sem;
+
+            this.props.get_resultList(sem, course)
+        }
     }
-    
+
     render() {
-        const {showList, resultData} = this.props
+        const { showList, resultData } = this.props
         return (
             <List showList = {showList} resultData = {resultData}>
                     RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p>
