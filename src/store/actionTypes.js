@@ -1,1 +1,2 @@
 export const SET_RESULTLIST = "SET_RESULTLIST";
+export const SET_FAILEDLIST = "SET_FAILEDLIST";

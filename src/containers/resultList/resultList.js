@@ -17,8 +17,9 @@ class resultList extends Component {
     }
     
     render() {
+        const {showList, resultData} = this.props
         return (
-            <List >
+            <List show = {showList} resultData = {resultData}>
                     RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p>
             </List>
         );

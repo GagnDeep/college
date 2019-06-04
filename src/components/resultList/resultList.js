@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import Item from './../item/item'
 
@@ -11,8 +10,9 @@ class List extends Component {
     }
 
     render() {
-        const { resultData, sem, clickHandler, showList } = this.props;
+        const { resultData, showList } = this.props;
         const course = this.props.match.params.course;
+        const sem = this.props.match.params.sem;
 
         let content = <h1>Loading</h1>
         let data = []
@@ -27,12 +27,13 @@ class List extends Component {
 
             if (data.length)
                 content = data.map((e, i) => {
-                    return <Item {...e} index = {e.rank?e.rank:i} sem = {sem} clickHandler = {clickHandler} course = {course}/>
+                    return <Item {...e} index = {e.rank?e.rank:i} sem = {sem} course = {course}/>
                 })
 
             else
                 content = <p>Result Not Found</p>
         }
+            // debugger;
 
         return (
             <div style = {{marginBottom: "200px"}}>
@@ -56,12 +57,12 @@ class List extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        resultData: state.list.resultData,
-        sem: state.list.sem,
-        showList: state.list.showList
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         resultData: state.list.resultData,
+//         sem: state.list.sem,
+//         showList: state.list.showList
+//     }
+// }
 
-export default withRouter(connect(mapStateToProps)(List))
+export default withRouter(List)

@@ -3,7 +3,8 @@ import * as actionTypes from './../actionTypes';
 const initialState = {
     resultData: [],
     sem: null,
-    showList: false
+    showList: false,
+    failedData: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,10 +12,17 @@ const reducer = (state = initialState, action) => {
         
         case actionTypes.SET_RESULTLIST: 
             return {
-                ...initialState,
+                ...state,
                 resultData: action.resultData,
                 sem: action.sem,
                 showList: true
+            }
+            
+        case actionTypes.SET_FAILEDLIST:
+            return {
+                ...state,
+                failedData: action.failedData,
+                sem: action.sem
             }
         
         default: return state
