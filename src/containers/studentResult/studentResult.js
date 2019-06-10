@@ -1,53 +1,38 @@
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Profile from './../../containers/profile/profile';
 import * as actions from './../../store/actions/index';
 
 
-class studentResult extends Component {
+const StudentResult = props => {
 
-    state = {
-        clicked: false
+    const [clicked, setClicked] = useState(false)
+
+    useEffect(fetchData, [props.match.params.rollno]);
+
+    useEffect(shouldChangeClicked, [props.location.pathname, props.match.url])
+
+
+    function shouldChangeClicked() {
+        if (props.match.url === props.location.pathname) setClicked(false)
     }
 
-    componentDidMount() {
-
-        this.fetchData()
+    function fetchData(rollno = props.match.params.rollno) {
+        let course = props.match.params.course
+        let sem = props.match.params.sem;
+        props.get_student(sem, course, rollno)
     }
 
-    shouldComponentUpdate(nextProps) {
-        
-        if(nextProps.match.params.rollno !== this.props.match.params.rollno) 
-            this.fetchData(nextProps.match.params.rollno)
-            
-        if (this.state && this.state.clicked) this.setState({ clicked: false });
-        return true
-    }
 
-    fetchData = (rollno = this.props.match.params.rollno) => {
-        let course = this.props.match.params.course
-        let sem = this.props.match.params.sem;
-        // debugger
-        this.props.get_student(sem, course, rollno)
-    }
+    let content = <h1>Loading</h1>
 
-    submitClicked = () => {
-        this.setState({ clicked: true })
-    }
+    if (props.student)
+        content = <Profile clicked = {clicked} submitClicked = {() => setClicked(true)}/>
 
-    render() {
+    return content;
 
-
-        let content = <h1>Loading</h1>
-
-        if (this.props.student)
-            content = <Profile clicked = {this.state.clicked} submitClicked = {this.submitClicked}/>
-
-        return content;
-    }
 }
 
 const mapStateToProps = (state) => {
@@ -62,4 +47,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(studentResult));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StudentResult));

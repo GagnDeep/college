@@ -1,45 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-
+import { useGetData, formatData } from './../../utility/utility';
 import List from './../../components/resultList/resultList';
-import * as actions from './../../store/actions/index'
 
 
 
-class resultList extends Component {
+const ResultList = props => {
+    const course = props.match.params.course,
+          sem = props.match.params.sem,
+          url = `https://college-2d3b0.firebaseio.com/${course}/partial.json`;
 
-    componentDidMount() {
-        if (this.props.resultData.length === 0) {
-            let course = this.props.match.params.course
-            let sem = this.props.match.params.sem;
-
-            this.props.get_resultList(sem, course)
-        }
-    }
-
-    render() {
-        const { showList, resultData } = this.props
-        return (
-            <List showList = {showList} resultData = {resultData}>
-                    RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p>
-            </List>
-        );
-    }
+    let [resultData] = useGetData(url);
+    resultData = formatData(resultData, sem)
+    
+    return (
+        <List showList = {resultData.length!==0}
+              resultData = {resultData}>RESULT LIST<p style = {{fontSize:"14px"}}>Click on Name to view profile</p></List>
+    );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        resultData: state.list.resultData,
-        sem: state.list.sem,
-        showList: state.list.showList
-    }
-}
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        get_resultList: (sem, course) => dispatch(actions.get_resultList(sem, course))
-    }
-}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(resultList));
+export default withRouter(ResultList);

@@ -8,18 +8,20 @@ import Failed from './../failed/failed';
 
 class result extends Component{
     render(){
-        return (<Switch>
-            <Route path = '/:course/exam-form/' component = {ExamForm} />
-            <Route path = '/:course/failed/:sem/' component = {Failed} />
-            <Route path = '/:course/results/:sem/:rollno/' component = {StudentResult} />
-            <Route path = '/:course/results/:sem/' component = {ResultList}/>
-            <Route render = {() => {
-                return (
-                    <h1>404! NOT FOUND</h1>
-                )
-            }}/>
-        </Switch>)
+        return (
+            <Switch>
+                <Route path = '/:course/exam-form/' component = {ExamForm} />
+                <Route path = '/:course/failed/:sem/' component = {Failed} />
+                <Route path = '/:course/results/:sem/:rollno/' component = {StudentResult} />
+                <Route path = '/:course/results/:sem/' component = {ResultList}/>
+                <Route render = {() => {
+                    return (
+                        <h1>404! NOT FOUND</h1>
+                    )
+                }}/>
+            </Switch>
+        )
     }
 }
 
-export default result
+export default result;
