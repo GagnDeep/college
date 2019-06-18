@@ -1,0 +1,10 @@
+.MoreIntroContainer {
+    background: #eee;
+}
+
+.MoreIntroText {
+    padding: 40px 0;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}

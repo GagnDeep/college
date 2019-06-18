@@ -1,0 +1,48 @@
+.Container{
+    position: fixed;
+    top: 40px;
+    left: 0px;
+    right: 100px;
+    bottom: 0px;
+    background: white;
+    max-width:400px;
+    overflow: scroll;
+    padding: 20px;
+    z-index:10;
+    
+    /*animation: openModel 0.5s ease-in forwards;*/
+}
+
+
+.Cancel{
+    position: absolute;
+    top:0;
+    left:5px;
+}
+
+.Search{
+    height:30px;
+    width:70%;
+    margin: 20px 0px;
+    padding: 0px 10px;
+    line-height: 25px;
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.slideBar-enter-active{
+    animation: openModel 1s ease-in forwards;
+    background: black;
+}
+@keyframes openModel{
+    0%{
+        opacity:0;
+        transform: translateX(-80vh);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,26 @@
+.Heading{
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 20px;
+}
+
+.Image{
+    width:100px;
+    height:100px;
+    background: blue !important;
+    margin: 20px auto;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.Container{
+    text-align: center;
+    margin: 40px auto;
+    padding: 10px;
+    background: #eee;
+}
+
+.Text{
+    
+}

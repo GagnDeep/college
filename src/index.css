@@ -14,6 +14,35 @@ code {
     monospace;
 }
 
+
+.slideBar-enter-active{
+    animation: openModel 1s ease-in forwards;
+    background: black;
+}
+.slideBar-exit-active{
+    animation: closeModal 1s ease-out forwards;
+}
+
+@keyframes closeModal{
+    from{
+      transform: translate(0,0);
+    }
+    to{
+      transform: translate(-80vh, 0);
+    }
+}
+
+@keyframes openModel{
+    0%{
+        opacity:0;
+        transform: translateX(-80vh);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 input{
       width: 70%;
     display: block;

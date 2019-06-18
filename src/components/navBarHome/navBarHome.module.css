@@ -1,0 +1,11 @@
+.Container{
+    position: relative;
+    height: 40px;
+    background: #ccc;
+    z-index:10;
+}
+
+.InnerText {
+    text-align: center;
+    line-height: 40px;
+}
